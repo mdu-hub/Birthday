@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Happy Birthday ❤️</title>
+
+  <!-- Optional fonts (need internet). Without internet the site still works with fallback fonts. -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@500;700&family=Playfair+Display:wght@500;700&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Shared heart shape + gradient used by every big heart on the page -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <defs>
+      <linearGradient id="heartGrad" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0" stop-color="#ff7ab0"/>
+        <stop offset="0.55" stop-color="#ff2d6f"/>
+        <stop offset="1" stop-color="#8f0e3a"/>
+      </linearGradient>
+      <symbol id="heart-shape" viewBox="0 0 32 29.6">
+        <path d="M23.6,0c-3.4,0-6.3,2.7-7.6,5.6C14.7,2.7,11.8,0,8.4,0C3.8,0,0,3.8,0,8.4c0,9.4,9.5,11.9,16,21.2c6.1-9.3,16-12.1,16-21.2C32,3.8,28.2,0,23.6,0z"/>
+      </symbol>
+    </defs>
+  </svg>
+
+  <!-- Background layers -->
+  <canvas id="matrix" aria-hidden="true"></canvas>
+  <div id="ambient" aria-hidden="true"></div>
+  <canvas id="confetti" aria-hidden="true"></canvas>
+
+  <!-- Music (never autoplays; the visitor presses the button) -->
+  
+  <audio id="music" src="Raindance.mp3" loop preload="none"></audio>
+  <button id="music-btn" class="music-btn" type="button" aria-pressed="false" aria-label="Play music">
+    <span id="music-icon" aria-hidden="true">🎵</span>
+    <span id="music-label">Music off</span>
+  </button>
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+  <main id="app">
+
+    <!-- 1. INTRO -->
+    <section id="intro" class="screen active" aria-label="Introduction">
+      <div class="wrap">
+        <svg class="big-heart beat" viewBox="0 0 32 29.6" aria-hidden="true"><use href="#heart-shape"/></svg>
+        <p class="made-with">Made with love for <span data-name>Sanelisiwe Dlusha</span></p>
+        <button id="btn-open" class="btn" type="button">Open Your Surprise ❤️</button>
+      </div>
+    </section>
+
+    <!-- 2. NAME -->
+    <section id="name-screen" class="screen" aria-label="Her name">
+      <div class="wrap">
+        <p class="eyebrow">Happy Birthday</p>
+        <h1 id="name-title" class="name-title"></h1>
+        <p id="birthday-line" class="date-line hidden"></p>
+        <button id="btn-to-message" class="btn hidden" type="button">Continue 💖</button>
+      </div>
+    </section>
+
+    <!-- 3. MESSAGE -->
+    <section id="message-screen" class="screen" aria-label="Birthday message">
+      <div class="wrap">
+        <svg class="big-heart small beat" viewBox="0 0 32 29.6" aria-hidden="true"><use href="#heart-shape"/></svg>
+        <p id="message-text" class="typed" aria-live="polite"></p>
+        <button id="btn-to-memories" class="btn hidden" type="button">Our Memories 📸</button>
+      </div>
+    </section>
+
+    <!-- 4. MEMORIES -->
+    <section id="memories-screen" class="screen" aria-label="Our memories">
+      <div class="wrap">
+        <h2 class="section-title">Our Memories</h2>
+        <div id="collage" class="collage" aria-label="Photo collage shaped like a heart"></div>
+        <figure id="viewer" class="viewer">
+          <img id="viewer-img" alt="">
+          <figcaption id="viewer-caption"></figcaption>
+        </figure>
+        <div class="controls">
+          <button id="prev" class="round" type="button" aria-label="Previous photo">‹</button>
+          <span id="counter" class="counter"></span>
+          <button id="next" class="round" type="button" aria-label="Next photo">›</button>
+        </div>
+        <button id="btn-to-letter" class="btn" type="button">Continue 💌</button>
+      </div>
+    </section>
+
+    <!-- 5. LOVE LETTER -->
+    <section id="letter-screen" class="screen" aria-label="Love letter">
+      <div class="wrap">
+        <button id="btn-read" class="btn" type="button">Read My Letter 💌</button>
+        <article id="paper" class="paper" aria-live="polite">
+          <h2 id="letter-greeting" class="letter-greeting"></h2>
+          <p id="letter-text" class="letter-text"></p>
+          <p id="letter-sign" class="letter-sign hidden"></p>
+          <p class="skip-hint" id="skip-hint">Tap the letter to show it all at once</p>
+        </article>
+        <button id="btn-to-final" class="btn hidden" type="button">One Last Surprise ✨</button>
+      </div>
+    </section>
+
+    <!-- 6. FINAL SURPRISE -->
+    <section id="final-screen" class="screen" aria-label="Final surprise">
+      <div class="wrap">
+        <svg class="big-heart huge beat" viewBox="0 0 32 29.6" aria-hidden="true"><use href="#heart-shape"/></svg>
+        <h2 id="final-title" class="final-title"></h2>
+        <p id="final-sub" class="final-sub"></p>
+        <div class="row">
+          <button id="btn-confetti" class="btn" type="button">Make It Rain Hearts 💖</button>
+          <button id="btn-replay" class="btn ghost" type="button">Replay ↺</button>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
