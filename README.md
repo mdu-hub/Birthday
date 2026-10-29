@@ -1,2 +1,2 @@
 # Birthday
-Its a small web page for wishing someone happybirthday
+Its a small web page for wishing someone happy birthday
